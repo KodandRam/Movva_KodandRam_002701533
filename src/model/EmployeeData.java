@@ -100,6 +100,10 @@ public class EmployeeData {
         this.emailAddress = emailAddress;
     }
     
+    @Override
+    public String toString(){
+        return name;
+    }
     
     
     
