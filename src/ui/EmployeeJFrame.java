@@ -4,6 +4,8 @@
  */
 package ui;
 
+import model.EmployeeHistory;
+
 /**
  *
  * @author movvakodandram
@@ -13,8 +15,14 @@ public class EmployeeJFrame extends javax.swing.JFrame {
     /**
      * Creates new form EmployeeJFrame
      */
+    
+        EmployeeHistory history;
+
+    
     public EmployeeJFrame() {
         initComponents();
+        history = new EmployeeHistory();
+
     }
 
     /**
@@ -26,7 +34,7 @@ public class EmployeeJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jSplitPane1 = new javax.swing.JSplitPane();
+        splitPane = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
         createBtn = new javax.swing.JButton();
         viewBtn = new javax.swing.JButton();
@@ -34,9 +42,14 @@ public class EmployeeJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jSplitPane1.setBackground(new java.awt.Color(0, 0, 0));
+        splitPane.setBackground(new java.awt.Color(0, 0, 0));
 
         createBtn.setText("Create");
+        createBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createBtnActionPerformed(evt);
+            }
+        });
 
         viewBtn.setText("View");
 
@@ -61,7 +74,7 @@ public class EmployeeJFrame extends javax.swing.JFrame {
                 .addContainerGap(450, Short.MAX_VALUE))
         );
 
-        jSplitPane1.setLeftComponent(jPanel1);
+        splitPane.setLeftComponent(jPanel1);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -74,21 +87,27 @@ public class EmployeeJFrame extends javax.swing.JFrame {
             .addGap(0, 626, Short.MAX_VALUE)
         );
 
-        jSplitPane1.setRightComponent(jPanel2);
+        splitPane.setRightComponent(jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1)
+            .addComponent(splitPane)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1)
+            .addComponent(splitPane)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
+        // TODO add your handling code here:
+        CreatePanel createPanel = new CreatePanel(history);
+        splitPane.setRightComponent(createPanel);
+    }//GEN-LAST:event_createBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -129,7 +148,7 @@ public class EmployeeJFrame extends javax.swing.JFrame {
     private javax.swing.JButton createBtn;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JSplitPane splitPane;
     private javax.swing.JButton viewBtn;
     // End of variables declaration//GEN-END:variables
 }
