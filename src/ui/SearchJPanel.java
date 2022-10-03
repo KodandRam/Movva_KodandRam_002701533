@@ -4,7 +4,7 @@
  */
 package ui;
 
-import java.awt.List;
+import java.util.List;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -41,7 +41,7 @@ EmployeeHistory history;
         searchButton = new javax.swing.JButton();
         lblView = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        dataTable = new javax.swing.JTable();
+        searchTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         txtSearch = new javax.swing.JTextField();
 
@@ -56,7 +56,7 @@ EmployeeHistory history;
         lblView.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblView.setText("Search Employee");
 
-        dataTable.setModel(new javax.swing.table.DefaultTableModel(
+        searchTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
@@ -75,7 +75,7 @@ EmployeeHistory history;
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(dataTable);
+        jScrollPane1.setViewportView(searchTable);
 
         jLabel1.setText("Keyword:");
 
@@ -121,19 +121,19 @@ EmployeeHistory history;
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         // TODO add your handling code here:
-/*
+
             List <EmployeeData> search=new ArrayList<>();
             String keyWord=txtSearch.getText();
            for(EmployeeData ed: history.getHistory()){
                if((ed.getName().contains(keyWord)|| ed.getGender().contains(keyWord)||ed.getLevel().contains(keyWord)||ed.getStartDate().contains(keyWord)||ed.getEmailAddress().contains(keyWord)||ed.getTeamInfo().contains(keyWord)||ed.getPositionTitle().contains(keyWord))){
                    
-                   search.addData(ed);
+                   search.add(ed);
                    
                }
            }
            
            SearchTable(search);
-            */
+            
           
 
       /*  String name=txtName.getText();
@@ -179,19 +179,42 @@ EmployeeHistory history;
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable dataTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblView;
     private javax.swing.JButton searchButton;
+    private javax.swing.JTable searchTable;
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
  private void populateTable() {
             
-        DefaultTableModel model= (DefaultTableModel) dataTable.getModel();
+        DefaultTableModel model= (DefaultTableModel) searchTable.getModel();
         
         model.setRowCount(0);
         for (EmployeeData ed : history.getHistory()){
+            Object[] row= new Object[10];
+            row[0]=ed;
+            row[1]=ed.getEmployeeId();
+            row[2]=ed.getAge();
+            row[3]=ed.getGender();
+            row[4]=ed.getStartDate();
+            row[5]=ed.getLevel();
+            row[6]=ed.getTeamInfo();
+            row[7]=ed.getPositionTitle();
+            row[8]=ed.getCellPhoneNumber();
+            row[9]=ed.getEmailAddress();
+            
+            model.addRow(row);
+            
+        }
+        
+    }
+
+    private void SearchTable(List<EmployeeData> search) {
+                DefaultTableModel model= (DefaultTableModel) searchTable.getModel();
+
+           model.setRowCount(0);
+        for (EmployeeData ed : search){
             Object[] row= new Object[10];
             row[0]=ed;
             row[1]=ed.getEmployeeId();
