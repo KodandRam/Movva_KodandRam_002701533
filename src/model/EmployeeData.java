@@ -4,6 +4,8 @@
  */
 package model;
 
+import javax.swing.Icon;
+
 /**
  *
  * @author movvakodandram
@@ -19,6 +21,15 @@ public class EmployeeData {
     private String positionTitle;
     private int cellPhoneNumber;
     private String emailAddress;
+    private Icon picture;
+
+    public Icon getPicture() {
+        return picture;
+    }
+
+    public void setPicture(Icon picture) {
+        this.picture = picture;
+    }
 
     public String getName() {
         return name;

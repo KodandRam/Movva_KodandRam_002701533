@@ -57,7 +57,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="viewBtn" pref="88" max="32767" attributes="0"/>
                           <Component id="createBtn" max="32767" attributes="0"/>
-                          <Component id="jButton1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="searchBtn" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -71,7 +71,7 @@
                       <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
                       <Component id="viewBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <Component id="searchBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="433" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -94,10 +94,13 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewBtnActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="searchBtn">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Search"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchBtnActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
