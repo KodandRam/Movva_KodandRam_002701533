@@ -18,16 +18,7 @@ public class PersonData {
     private String address;
     private String emergency_contact;
 
-    public PersonData(int personID, String name, int age, String gender, String phone, String email, String address,String emergency_contact) {
-        this.personID = personID;
-        this.name = name;
-        this.age = age;
-        this.gender = gender;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.emergency_contact = emergency_contact;
-    }
+  
 
     public int getPersonID() {
         return personID;

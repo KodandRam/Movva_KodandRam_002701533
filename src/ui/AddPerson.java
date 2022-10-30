@@ -4,6 +4,12 @@
  */
 package ui;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import model.MedicalSystem;
+import model.PersonData;
+import model.PersonHistory;
+
 /**
  *
  * @author movvakodandram
@@ -13,8 +19,13 @@ public class AddPerson extends javax.swing.JPanel {
     /**
      * Creates new form AddPerson
      */
-    public AddPerson() {
+    
+    MedicalSystem med;
+    PersonHistory perHis;
+    
+    public AddPerson(PersonHistory perHis) {
         initComponents();
+        this.perHis=perHis;
     }
 
     /**
@@ -42,7 +53,7 @@ public class AddPerson extends javax.swing.JPanel {
         txtPersonEmail = new javax.swing.JTextField();
         txtPersonAddress = new javax.swing.JTextField();
         txtEmergency = new javax.swing.JTextField();
-        cbGender = new javax.swing.JComboBox<>();
+        txtGender = new javax.swing.JTextField();
 
         lblPersonID.setText("Person ID");
 
@@ -61,6 +72,11 @@ public class AddPerson extends javax.swing.JPanel {
         lblEmergency.setText("Emergency Contact");
 
         submitAddPerson.setText("SUBMIT");
+        submitAddPerson.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitAddPersonActionPerformed(evt);
+            }
+        });
 
         txtPersonID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,13 +87,6 @@ public class AddPerson extends javax.swing.JPanel {
         txtEmergency.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEmergencyActionPerformed(evt);
-            }
-        });
-
-        cbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MALE", "FEMALE", "OTHER" }));
-        cbGender.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbGenderActionPerformed(evt);
             }
         });
 
@@ -108,7 +117,7 @@ public class AddPerson extends javax.swing.JPanel {
                             .addComponent(txtPersonEmail)
                             .addComponent(txtPersonAddress)
                             .addComponent(txtEmergency)
-                            .addComponent(cbGender, 0, 139, Short.MAX_VALUE))))
+                            .addComponent(txtGender, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE))))
                 .addContainerGap(170, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -129,7 +138,7 @@ public class AddPerson extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblGender)
-                    .addComponent(cbGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblPhone)
@@ -148,13 +157,9 @@ public class AddPerson extends javax.swing.JPanel {
                     .addComponent(txtEmergency, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(submitAddPerson)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cbGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbGenderActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbGenderActionPerformed
 
     private void txtPersonIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPersonIDActionPerformed
         // TODO add your handling code here:
@@ -164,9 +169,90 @@ public class AddPerson extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEmergencyActionPerformed
 
+        public boolean validateData() {
+            
+        if (!txtPersonID.getText().matches("[0-9]+")){
+            JOptionPane.showMessageDialog(this, "Enter proper ID");
+        }
+
+        if (txtPersonName.getText().length() < 2 || !txtPersonName.getText().matches("[a-zA-Z]+")) {
+            JOptionPane.showMessageDialog(this, "Enter proper name");
+            return false;
+        }
+        
+        if (!txtPersonAge.getText().matches("[0-9]+")) {
+            JOptionPane.showMessageDialog(this, "Enter proper age");
+            return false;
+        }
+        
+        if (!txtGender.getText().matches("^male$|^female$")){
+            JOptionPane.showMessageDialog(this, "Enter proper gender");
+            return false;
+        }
+         
+        if (!txtPersonPhone.getText().matches("[0-9]+")||txtPersonPhone.getText().length()!=10) {
+            JOptionPane.showMessageDialog(this, "Enter proper phone number");
+            return false;
+        }
+
+        if (txtPersonAddress.getText().length() < 2 || !txtPersonAddress.getText().matches("[a-zA-Z]+")) {
+            JOptionPane.showMessageDialog(this, "Enter proper address");
+            return false;
+        }
+        
+        if (!txtEmergency.getText().matches("[0-9]+")||txtEmergency.getText().length()!=10) {
+            JOptionPane.showMessageDialog(this, "Enter proper emergency contact phone number");
+            return false;
+        }
+
+        return true;
+    }
+    
+    private void submitAddPersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitAddPersonActionPerformed
+        // TODO add your handling code here:
+        if(txtPersonID.getText().equals("")||txtPersonName.getText().equals("")||txtPersonAge.getText().equals("")||txtGender.getText().equals("")||txtPersonPhone.getText().equals("")||
+               txtPersonEmail.getText().equals("")|| txtPersonAddress.getText().equals("")|| txtEmergency.getText().equals("") ){
+            JOptionPane.showMessageDialog(null, "Please fill all the information");
+            
+        }
+        else if(validateData()){
+            int Id=Integer.parseInt(txtPersonID.getText().trim());
+            String name=txtPersonName.getText();
+            int age=Integer.parseInt(txtPersonAge.getText().trim());
+            String gender=txtGender.getText();
+            String phone=txtPersonPhone.getText();
+            String email=txtPersonEmail.getText();
+            String address=txtPersonAddress.getText();
+            String emergency=txtEmergency.getText();
+            
+            PersonData pd= perHis.addNewData();
+            pd.setPersonID(Id);
+            pd.setName(name);
+            pd.setAge(age);
+            pd.setGender(gender);
+            pd.setPhone(phone);
+            pd.setEmail(email);
+            pd.setAddress(address);
+            pd.setEmergency_contact(emergency);
+            
+            JOptionPane.showMessageDialog(this,"New Person Data Created");
+            txtPersonID.setText("");
+            txtPersonName.setText("");
+            txtPersonAge.setText("");
+            txtPersonEmail.setText("");
+            txtGender.setText("");
+            txtPersonPhone.setText("");
+            txtPersonAddress.setText("");
+            txtEmergency.setText("");
+            
+            
+        }
+
+
+    }//GEN-LAST:event_submitAddPersonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cbGender;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblAge;
     private javax.swing.JLabel lblEmail;
@@ -177,6 +263,7 @@ public class AddPerson extends javax.swing.JPanel {
     private javax.swing.JLabel lblPhone;
     private javax.swing.JButton submitAddPerson;
     private javax.swing.JTextField txtEmergency;
+    private javax.swing.JTextField txtGender;
     private javax.swing.JTextField txtPersonAddress;
     private javax.swing.JTextField txtPersonAge;
     private javax.swing.JTextField txtPersonEmail;

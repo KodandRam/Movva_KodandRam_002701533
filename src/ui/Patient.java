@@ -4,6 +4,8 @@
  */
 package ui;
 
+import model.PersonHistory;
+
 /**
  *
  * @author movvakodandram
@@ -13,8 +15,12 @@ public class Patient extends javax.swing.JPanel {
     /**
      * Creates new form Patient
      */
+    PersonHistory perhis;
+    
+    
     public Patient() {
         initComponents();
+        perhis= new PersonHistory();
     }
 
     /**
@@ -108,13 +114,13 @@ public class Patient extends javax.swing.JPanel {
 
     private void addPersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPersonActionPerformed
         // TODO add your handling code here:
-        AddPerson addperson = new AddPerson();
+        AddPerson addperson = new AddPerson(perhis);
         splitPane7.setRightComponent(addperson);
     }//GEN-LAST:event_addPersonActionPerformed
 
     private void editPersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editPersonActionPerformed
         // TODO add your handling code here:
-        EditPerson editperson = new EditPerson();
+        EditPerson editperson = new EditPerson(perhis);
         splitPane7.setRightComponent(editperson);
     }//GEN-LAST:event_editPersonActionPerformed
 

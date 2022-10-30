@@ -4,6 +4,8 @@
  */
 package ui;
 
+import model.PersonHistory;
+
 /**
  *
  * @author movvakodandram
@@ -13,8 +15,12 @@ public class SystemAdmin extends javax.swing.JPanel {
     /**
      * Creates new form SystemAdmin
      */
+    
+    PersonHistory perhis;
+    
     public SystemAdmin() {
         initComponents();
+        perhis= new PersonHistory();
     }
 
     /**
@@ -198,7 +204,7 @@ public class SystemAdmin extends javax.swing.JPanel {
 
     private void adminAddPersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminAddPersonActionPerformed
         // TODO add your handling code here:
-        AddPerson addper = new AddPerson();
+        AddPerson addper = new AddPerson(perhis);
         splitPane1.setRightComponent(addper);
 
     }//GEN-LAST:event_adminAddPersonActionPerformed
@@ -226,7 +232,7 @@ public class SystemAdmin extends javax.swing.JPanel {
 
     private void adminEditPersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminEditPersonActionPerformed
         // TODO add your handling code here:
-        EditPerson editper = new EditPerson();
+        EditPerson editper = new EditPerson(perhis);
         splitPane1.setRightComponent(editper);
 
     }//GEN-LAST:event_adminEditPersonActionPerformed

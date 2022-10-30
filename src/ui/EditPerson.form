@@ -29,7 +29,7 @@
                   <Component id="txtPersonAgeV" alignment="0" max="32767" attributes="0"/>
                   <Component id="txtPersonNameV" alignment="0" max="32767" attributes="0"/>
                   <Component id="txtPersonIDV" alignment="0" max="32767" attributes="0"/>
-                  <Component id="cbGenderV" pref="115" max="32767" attributes="0"/>
+                  <Component id="txtGenderV" pref="115" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -87,9 +87,9 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblGenderV" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="cbGenderV" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblAddressV" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtPersonAddressV" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtGenderV" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -110,7 +110,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTable1">
+        <Component class="javax.swing.JTable" name="tablePerson">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="8" rowCount="4">
@@ -238,27 +238,13 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEmergencyVActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JComboBox" name="cbGenderV">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="3">
-            <StringItem index="0" value="MALE"/>
-            <StringItem index="1" value="FEMALE"/>
-            <StringItem index="2" value="OTHER"/>
-          </StringArray>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbGenderVActionPerformed"/>
-      </Events>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
-    </Component>
     <Component class="javax.swing.JButton" name="submitUpdatePerson">
       <Properties>
         <Property name="text" type="java.lang.String" value="UPDATE"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="submitUpdatePersonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="submitDeletePerson">
       <Properties>
@@ -272,6 +258,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="VIEW"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="submitVIewPersonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtGenderV">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtGenderVActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

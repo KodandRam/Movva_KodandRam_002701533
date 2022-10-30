@@ -25,6 +25,17 @@ public class PersonHistory {
     public void setPersonhistory(ArrayList<PersonData> personhistory) {
         this.personhistory = personhistory;
     }
+
+    public PersonData addNewData() {
+      PersonData newPersonData = new PersonData();
+      personhistory.add(newPersonData);
+      return newPersonData;
+    }
+
+    public void deleteData(PersonData selectedPerson) {
+        personhistory.remove(selectedPerson);
+    }
+    
     
     
     

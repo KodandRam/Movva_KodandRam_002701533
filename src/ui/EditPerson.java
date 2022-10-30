@@ -4,6 +4,11 @@
  */
 package ui;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.PersonData;
+import model.PersonHistory;
+
 /**
  *
  * @author movvakodandram
@@ -13,8 +18,16 @@ public class EditPerson extends javax.swing.JPanel {
     /**
      * Creates new form EditPerson
      */
-    public EditPerson() {
+    
+    PersonHistory perHis;
+    PersonData pd;
+    
+    public EditPerson(PersonHistory perHis) {
         initComponents();
+        this.perHis=perHis;
+
+        populateTable();
+        
     }
 
     /**
@@ -27,7 +40,7 @@ public class EditPerson extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablePerson = new javax.swing.JTable();
         lblEmergencyV = new javax.swing.JLabel();
         txtPersonIDV = new javax.swing.JTextField();
         txtPersonNameV = new javax.swing.JTextField();
@@ -43,12 +56,12 @@ public class EditPerson extends javax.swing.JPanel {
         txtPersonAddressV = new javax.swing.JTextField();
         lblAddressV = new javax.swing.JLabel();
         txtEmergencyV = new javax.swing.JTextField();
-        cbGenderV = new javax.swing.JComboBox<>();
         submitUpdatePerson = new javax.swing.JButton();
         submitDeletePerson = new javax.swing.JButton();
         submitVIewPerson = new javax.swing.JButton();
+        txtGenderV = new javax.swing.JTextField();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablePerson.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -59,7 +72,7 @@ public class EditPerson extends javax.swing.JPanel {
                 "Person ID", "Name", "Age", "Gender", "Phone", "Address", "Email", "Emergency Contact"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablePerson);
 
         lblEmergencyV.setText("Emergency Contact");
 
@@ -95,14 +108,12 @@ public class EditPerson extends javax.swing.JPanel {
             }
         });
 
-        cbGenderV.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MALE", "FEMALE", "OTHER" }));
-        cbGenderV.addActionListener(new java.awt.event.ActionListener() {
+        submitUpdatePerson.setText("UPDATE");
+        submitUpdatePerson.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbGenderVActionPerformed(evt);
+                submitUpdatePersonActionPerformed(evt);
             }
         });
-
-        submitUpdatePerson.setText("UPDATE");
 
         submitDeletePerson.setText("DELETE");
         submitDeletePerson.addActionListener(new java.awt.event.ActionListener() {
@@ -112,6 +123,17 @@ public class EditPerson extends javax.swing.JPanel {
         });
 
         submitVIewPerson.setText("VIEW");
+        submitVIewPerson.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitVIewPersonActionPerformed(evt);
+            }
+        });
+
+        txtGenderV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtGenderVActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -129,7 +151,7 @@ public class EditPerson extends javax.swing.JPanel {
                     .addComponent(txtPersonAgeV, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtPersonNameV, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtPersonIDV, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cbGenderV, 0, 115, Short.MAX_VALUE))
+                    .addComponent(txtGenderV, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblEmergencyV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -178,9 +200,9 @@ public class EditPerson extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblGenderV)
-                    .addComponent(cbGenderV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblAddressV)
-                    .addComponent(txtPersonAddressV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPersonAddressV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtGenderV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(submitVIewPerson)
@@ -198,23 +220,91 @@ public class EditPerson extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEmergencyVActionPerformed
 
-    private void cbGenderVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbGenderVActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbGenderVActionPerformed
-
     private void submitDeletePersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitDeletePersonActionPerformed
         // TODO add your handling code here:
+         int selectedRowIndex=tablePerson.getSelectedRow();
+        if(selectedRowIndex<0){
+            JOptionPane.showMessageDialog(this, "Please select a row to delete");
+            return;
+        }
+        
+                DefaultTableModel model= (DefaultTableModel) tablePerson.getModel();
+                PersonData selectedPerson=(PersonData) model.getValueAt(selectedRowIndex,0 );
+                perHis.deleteData(selectedPerson);
+                
+                JOptionPane.showMessageDialog(this, "Person Data deleted");
+                
+                populateTable();
+
+
+
+
     }//GEN-LAST:event_submitDeletePersonActionPerformed
 
     private void txtPersonNameVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPersonNameVActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPersonNameVActionPerformed
 
+    private void submitVIewPersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitVIewPersonActionPerformed
+        // TODO add your handling code here:
+               int selectedRowIndex=tablePerson.getSelectedRow();
+               if(selectedRowIndex<0){
+               JOptionPane.showMessageDialog(this, "Please select a row to view");
+               return;
+        }
+        
+                DefaultTableModel model= (DefaultTableModel) tablePerson.getModel();
+                PersonData selectedPerson=(PersonData) model.getValueAt(selectedRowIndex,0 );
+                txtPersonIDV.setText(String.valueOf(selectedPerson.getPersonID()));
+                txtPersonNameV.setText(selectedPerson.getName());                
+                txtPersonAgeV.setText(String.valueOf(selectedPerson.getAge()));
+                txtGenderV.setText(selectedPerson.getGender());
+                txtPersonPhoneV.setText(selectedPerson.getPhone());
+                txtPersonEmailV.setText(selectedPerson.getEmail());
+                txtPersonAddressV.setText(selectedPerson.getAddress());
+                txtEmergencyV.setText(String.valueOf(selectedPerson.getEmergency_contact()));
+                
+
+    }//GEN-LAST:event_submitVIewPersonActionPerformed
+
+    private void txtGenderVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGenderVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtGenderVActionPerformed
+
+    private void submitUpdatePersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitUpdatePersonActionPerformed
+        // TODO add your handling code here:
+             int selectedRowIndex= tablePerson.getSelectedRow();
+              if(selectedRowIndex<0){
+                   JOptionPane.showMessageDialog(this, "Please select view/modify  for the row you want to update");
+                      return;
+                         }
+              
+               DefaultTableModel model= (DefaultTableModel) tablePerson.getModel();
+               PersonData pd=(PersonData) model.getValueAt(selectedRowIndex, 0);
+        
+        for(PersonData i: perHis.getPersonhistory()){
+            if(i.getPersonID()==pd.getPersonID()){
+
+            i.setPersonID(Integer.parseInt(txtPersonIDV.getText()));
+            i.setName(txtPersonNameV.getText());
+            i.setAge(Integer.parseInt(txtPersonAgeV.getText()));
+            i.setGender(txtGenderV.getText());
+            i.setPhone(txtPersonPhoneV.getText());
+            i.setEmail(txtPersonEmailV.getText());
+            i.setAddress(txtPersonAddressV.getText());
+            i.setEmergency_contact(txtEmergencyV.getText());
+            
+            populateTable();
+
+
+            }
+        }
+
+    }//GEN-LAST:event_submitUpdatePersonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cbGenderV;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblAddressV;
     private javax.swing.JLabel lblAgeV;
     private javax.swing.JLabel lblEmailV;
@@ -226,7 +316,9 @@ public class EditPerson extends javax.swing.JPanel {
     private javax.swing.JButton submitDeletePerson;
     private javax.swing.JButton submitUpdatePerson;
     private javax.swing.JButton submitVIewPerson;
+    private javax.swing.JTable tablePerson;
     private javax.swing.JTextField txtEmergencyV;
+    private javax.swing.JTextField txtGenderV;
     private javax.swing.JTextField txtPersonAddressV;
     private javax.swing.JTextField txtPersonAgeV;
     private javax.swing.JTextField txtPersonEmailV;
@@ -234,4 +326,31 @@ public class EditPerson extends javax.swing.JPanel {
     private javax.swing.JTextField txtPersonNameV;
     private javax.swing.JTextField txtPersonPhoneV;
     // End of variables declaration//GEN-END:variables
+
+    private void populateTable() {
+            
+        DefaultTableModel model= (DefaultTableModel) tablePerson.getModel();
+        
+        model.setRowCount(0);
+        for (PersonData pd : perHis.getPersonhistory()){
+            Object[] row= new Object[9];
+            row[0]=pd;
+            row[1]=pd.getPersonID();
+            row[2]=pd.getName();
+            row[3]=pd.getAge();
+            row[4]=pd.getGender();
+            row[5]=pd.getPhone();
+            row[6]=pd.getEmail();
+            row[7]=pd.getAddress();
+            row[8]=pd.getEmergency_contact();
+            
+            model.addRow(row);
+            
+        }
+        
+    }
+
+
+
+
 }
