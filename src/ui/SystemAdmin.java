@@ -47,6 +47,11 @@ public class SystemAdmin extends javax.swing.JPanel {
         });
 
         adminAddCommunity.setText("ADD COMMUNITY");
+        adminAddCommunity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminAddCommunityActionPerformed(evt);
+            }
+        });
 
         AdminEditCommunity.setText("EDIT COMMUNITY");
         AdminEditCommunity.addActionListener(new java.awt.event.ActionListener() {
@@ -56,6 +61,11 @@ public class SystemAdmin extends javax.swing.JPanel {
         });
 
         adminAddDoctor.setText("ADD DOCTOR");
+        adminAddDoctor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminAddDoctorActionPerformed(evt);
+            }
+        });
 
         adminEditDoctor.setText("EDIT DOCTOR");
         adminEditDoctor.addActionListener(new java.awt.event.ActionListener() {
@@ -79,8 +89,18 @@ public class SystemAdmin extends javax.swing.JPanel {
         });
 
         adminEditPatient.setText("EDIT PATIENT");
+        adminEditPatient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminEditPatientActionPerformed(evt);
+            }
+        });
 
         adminEditPerson.setText("EDIT PERSON");
+        adminEditPerson.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminEditPersonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -88,16 +108,17 @@ public class SystemAdmin extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(adminEditHospital)
-                    .addComponent(adminAddCommunity)
-                    .addComponent(AdminEditCommunity)
-                    .addComponent(adminAddDoctor)
-                    .addComponent(adminEditDoctor)
-                    .addComponent(adminAddHospital)
-                    .addComponent(adminAddPerson)
-                    .addComponent(adminEditPatient)
-                    .addComponent(adminEditPerson))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(AdminEditCommunity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(adminAddHospital, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(adminEditHospital, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(adminAddCommunity, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(adminAddDoctor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(adminEditDoctor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(adminAddPerson, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(adminEditPerson, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(adminEditPatient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -112,7 +133,7 @@ public class SystemAdmin extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(AdminEditCommunity)
                 .addGap(18, 18, 18)
-                .addComponent(adminAddDoctor)
+                .addComponent(adminAddDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(adminEditDoctor)
                 .addGap(18, 18, 18)
@@ -157,23 +178,64 @@ public class SystemAdmin extends javax.swing.JPanel {
 
     private void adminAddHospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminAddHospitalActionPerformed
         // TODO add your handling code here:
+        AddHospital addhspt= new AddHospital();
+        splitPane1.setRightComponent(addhspt);
+
     }//GEN-LAST:event_adminAddHospitalActionPerformed
 
     private void adminEditHospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminEditHospitalActionPerformed
         // TODO add your handling code here:
+        EditHospital edithspt= new EditHospital();
+        splitPane1.setRightComponent(edithspt);
+
     }//GEN-LAST:event_adminEditHospitalActionPerformed
 
     private void adminEditDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminEditDoctorActionPerformed
         // TODO add your handling code here:
+        EditDoctor editdoc = new EditDoctor();
+        splitPane1.setRightComponent(editdoc);
     }//GEN-LAST:event_adminEditDoctorActionPerformed
 
     private void adminAddPersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminAddPersonActionPerformed
         // TODO add your handling code here:
+        AddPerson addper = new AddPerson();
+        splitPane1.setRightComponent(addper);
+
     }//GEN-LAST:event_adminAddPersonActionPerformed
 
     private void AdminEditCommunityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminEditCommunityActionPerformed
         // TODO add your handling code here:
+        EditCommunity editcmt = new EditCommunity();
+        splitPane1.setRightComponent(editcmt);
     }//GEN-LAST:event_AdminEditCommunityActionPerformed
+
+    private void adminAddCommunityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminAddCommunityActionPerformed
+        // TODO add your handling code here:
+        AddCommunity addcmt =new AddCommunity();
+        splitPane1.setRightComponent(addcmt);
+
+    }//GEN-LAST:event_adminAddCommunityActionPerformed
+
+    private void adminAddDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminAddDoctorActionPerformed
+        // TODO add your handling code here:
+        AddDoctor adddoc = new AddDoctor();
+        splitPane1.setRightComponent(adddoc);
+       
+
+    }//GEN-LAST:event_adminAddDoctorActionPerformed
+
+    private void adminEditPersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminEditPersonActionPerformed
+        // TODO add your handling code here:
+        EditPerson editper = new EditPerson();
+        splitPane1.setRightComponent(editper);
+
+    }//GEN-LAST:event_adminEditPersonActionPerformed
+
+    private void adminEditPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminEditPatientActionPerformed
+        // TODO add your handling code here:
+        EditVitals editvit = new EditVitals();
+        splitPane1.setRightComponent(editvit);
+    }//GEN-LAST:event_adminEditPatientActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

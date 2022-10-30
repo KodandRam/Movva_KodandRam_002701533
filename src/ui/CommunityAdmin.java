@@ -28,29 +28,62 @@ public class CommunityAdmin extends javax.swing.JPanel {
 
         splitPane3 = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        addComm = new javax.swing.JButton();
+        editComm = new javax.swing.JButton();
+        addHos = new javax.swing.JButton();
+        editHos = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
-        jButton1.setText("ADD COMMUNITY");
+        addComm.setText("ADD COMMUNITY");
+        addComm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addCommActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("EDIT COMMUNITY");
+        editComm.setText("EDIT COMMUNITY");
+        editComm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editCommActionPerformed(evt);
+            }
+        });
+
+        addHos.setText("ADD HOSPITAL");
+        addHos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addHosActionPerformed(evt);
+            }
+        });
+
+        editHos.setText("EDIT HOSPITAL");
+        editHos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editHosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(addComm, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addComponent(editComm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(addHos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(editHos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(111, 111, 111)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(90, 90, 90))
+                .addGap(55, 55, 55)
+                .addComponent(addComm)
+                .addGap(48, 48, 48)
+                .addComponent(editComm)
+                .addGap(48, 48, 48)
+                .addComponent(addHos)
+                .addGap(43, 43, 43)
+                .addComponent(editHos)
+                .addContainerGap(114, Short.MAX_VALUE))
         );
 
         splitPane3.setLeftComponent(jPanel1);
@@ -80,10 +113,38 @@ public class CommunityAdmin extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void addCommActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCommActionPerformed
+        // TODO add your handling code here:
+        AddCommunity addcomm= new AddCommunity();
+        splitPane3.setRightComponent(addcomm);
+
+    }//GEN-LAST:event_addCommActionPerformed
+
+    private void editCommActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCommActionPerformed
+        // TODO add your handling code here:
+        EditCommunity editcomm= new EditCommunity();
+        splitPane3.setRightComponent(editcomm);
+    }//GEN-LAST:event_editCommActionPerformed
+
+    private void addHosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addHosActionPerformed
+        // TODO add your handling code here:
+        AddHospital addhosp= new AddHospital();
+        splitPane3.setRightComponent(addhosp);
+
+    }//GEN-LAST:event_addHosActionPerformed
+
+    private void editHosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editHosActionPerformed
+        // TODO add your handling code here:
+        EditHospital edithosp= new EditHospital();
+        splitPane3.setRightComponent(edithosp);
+    }//GEN-LAST:event_editHosActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton addComm;
+    private javax.swing.JButton addHos;
+    private javax.swing.JButton editComm;
+    private javax.swing.JButton editHos;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSplitPane splitPane3;

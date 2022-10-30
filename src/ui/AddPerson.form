@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="submitAddPerson" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="lblEmergency" max="32767" attributes="0"/>
+                          <Component id="lblAddress" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblEmail" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblPhone" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblGender" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblAge" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblPersonName" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblPersonID" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="txtPersonID" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtPersonName" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtPersonAge" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtPersonPhone" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtPersonEmail" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtPersonAddress" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtEmergency" alignment="0" max="32767" attributes="0"/>
+                          <Component id="cbGender" alignment="0" pref="139" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace pref="170" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblPersonID" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPersonID" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblPersonName" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPersonName" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblAge" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPersonAge" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblGender" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbGender" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lblPhone" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPersonPhone" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPersonEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblAddress" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPersonAddress" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblEmergency" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtEmergency" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="submitAddPerson" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="lblPersonID">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Person ID"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblPersonName">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Name"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblAge">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Age"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblGender">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Gender"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblPhone">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Phone"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblEmail">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Email"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblAddress">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Address"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblEmergency">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Emergency Contact"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="submitAddPerson">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="SUBMIT"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtPersonID">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPersonIDActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtPersonName">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtPersonAge">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtPersonPhone">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtPersonEmail">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtPersonAddress">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtEmergency">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEmergencyActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cbGender">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="3">
+            <StringItem index="0" value="MALE"/>
+            <StringItem index="1" value="FEMALE"/>
+            <StringItem index="2" value="OTHER"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbGenderActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+  </SubComponents>
+</Form>

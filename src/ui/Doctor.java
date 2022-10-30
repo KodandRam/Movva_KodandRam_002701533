@@ -28,16 +28,21 @@ public class Doctor extends javax.swing.JPanel {
 
         splitPane5 = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        addVitals = new javax.swing.JButton();
+        editVitals = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
-        jButton1.setText("Add Patient Vitals");
-
-        jButton2.setText("Edit Patient Vitals");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        addVitals.setText("Add Patient Vitals");
+        addVitals.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                addVitalsActionPerformed(evt);
+            }
+        });
+
+        editVitals.setText("Edit Patient Vitals");
+        editVitals.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editVitalsActionPerformed(evt);
             }
         });
 
@@ -48,17 +53,17 @@ public class Doctor extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(addVitals)
+                    .addComponent(editVitals))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(111, 111, 111)
-                .addComponent(jButton1)
+                .addComponent(addVitals)
                 .addGap(121, 121, 121)
-                .addComponent(jButton2)
+                .addComponent(editVitals)
                 .addContainerGap(90, Short.MAX_VALUE))
         );
 
@@ -89,14 +94,22 @@ public class Doctor extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void editVitalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editVitalsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        EditVitals editvitals= new EditVitals();
+        splitPane5.setRightComponent(editvitals);
+    }//GEN-LAST:event_editVitalsActionPerformed
+
+    private void addVitalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addVitalsActionPerformed
+        // TODO add your handling code here:
+        AddVitals addvitals = new AddVitals();
+        splitPane5.setRightComponent(addvitals);
+    }//GEN-LAST:event_addVitalsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton addVitals;
+    private javax.swing.JButton editVitals;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSplitPane splitPane5;

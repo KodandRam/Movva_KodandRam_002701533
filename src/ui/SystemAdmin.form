@@ -48,16 +48,18 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="adminEditHospital" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="adminAddCommunity" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="AdminEditCommunity" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="adminAddDoctor" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="adminEditDoctor" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="adminAddHospital" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="adminAddPerson" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="adminEditPatient" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="adminEditPerson" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="AdminEditCommunity" alignment="0" max="32767" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="adminAddHospital" alignment="0" max="32767" attributes="0"/>
+                              <Component id="adminEditHospital" alignment="0" max="32767" attributes="0"/>
+                              <Component id="adminAddCommunity" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="adminAddDoctor" alignment="0" max="32767" attributes="0"/>
+                          <Component id="adminEditDoctor" alignment="0" max="32767" attributes="0"/>
+                          <Component id="adminAddPerson" alignment="0" max="32767" attributes="0"/>
+                          <Component id="adminEditPerson" alignment="0" max="32767" attributes="0"/>
+                          <Component id="adminEditPatient" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -75,7 +77,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="AdminEditCommunity" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="adminAddDoctor" min="-2" max="-2" attributes="0"/>
+                      <Component id="adminAddDoctor" min="-2" pref="23" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="adminEditDoctor" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -102,6 +104,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="ADD COMMUNITY"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adminAddCommunityActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="AdminEditCommunity">
               <Properties>
@@ -115,6 +120,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="ADD DOCTOR"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adminAddDoctorActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="adminEditDoctor">
               <Properties>
@@ -144,11 +152,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="EDIT PATIENT"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adminEditPatientActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="adminEditPerson">
               <Properties>
                 <Property name="text" type="java.lang.String" value="EDIT PERSON"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adminEditPersonActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

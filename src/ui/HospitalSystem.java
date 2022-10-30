@@ -63,6 +63,11 @@ public class HospitalSystem extends javax.swing.JFrame {
         });
 
         doctorBtn.setText("DOCTOR");
+        doctorBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                doctorBtnActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setText("Hospital System");
@@ -149,19 +154,43 @@ public class HospitalSystem extends javax.swing.JFrame {
 
     private void hsptAdminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hsptAdminBtnActionPerformed
         // TODO add your handling code here:
+        HospitalAdmin hsptadmin= new HospitalAdmin();
+        splitPane.setRightComponent(hsptadmin);
+
+
     }//GEN-LAST:event_hsptAdminBtnActionPerformed
 
     private void cmtAdminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmtAdminBtnActionPerformed
         // TODO add your handling code here:
+        CommunityAdmin commadmin= new CommunityAdmin();
+        splitPane.setRightComponent(commadmin);
+
+
     }//GEN-LAST:event_cmtAdminBtnActionPerformed
 
     private void patientBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientBtnActionPerformed
         // TODO add your handling code here:
+        Patient pat= new Patient();
+        splitPane.setRightComponent(pat);
+
+
     }//GEN-LAST:event_patientBtnActionPerformed
 
     private void adminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminBtnActionPerformed
         // TODO add your handling code here:
+        SystemAdmin systemadmin = new SystemAdmin();
+        splitPane.setRightComponent(systemadmin);
+        
     }//GEN-LAST:event_adminBtnActionPerformed
+
+    private void doctorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorBtnActionPerformed
+        // TODO add your handling code here:
+        Doctor doc= new Doctor();
+        splitPane.setRightComponent(doc);
+
+
+
+    }//GEN-LAST:event_doctorBtnActionPerformed
 
     /**
      * @param args the command line arguments
