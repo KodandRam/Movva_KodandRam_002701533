@@ -161,7 +161,7 @@ public class AddVitals extends javax.swing.JPanel {
 
     private void submitAddVitalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitAddVitalsActionPerformed
         // TODO add your handling code here:
-if(txtID.getText().equals("")||txtWeight.getText().equals("")||txtTemp.getText().equals("")||txtBP.getText().equals("")||txtRR.getText().equals("")||
+        if(txtID.getText().equals("")||txtWeight.getText().equals("")||txtTemp.getText().equals("")||txtBP.getText().equals("")||txtRR.getText().equals("")||
                txtDiagnosis.getText().equals("") ){
             JOptionPane.showMessageDialog(null, "Please fill all the information");
             

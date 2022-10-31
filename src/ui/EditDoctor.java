@@ -4,6 +4,11 @@
  */
 package ui;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.DoctorData;
+import model.DoctorHistory;
+
 /**
  *
  * @author movvakodandram
@@ -13,8 +18,12 @@ public class EditDoctor extends javax.swing.JPanel {
     /**
      * Creates new form EditDoctor
      */
-    public EditDoctor() {
+    DoctorHistory drHis;
+    
+    public EditDoctor(DoctorHistory drHis) {
         initComponents();
+        this.drHis=drHis;
+        populateTable();
     }
 
     /**
@@ -45,6 +54,11 @@ public class EditDoctor extends javax.swing.JPanel {
         });
 
         submitVIewDr.setText("VIEW");
+        submitVIewDr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitVIewDrActionPerformed(evt);
+            }
+        });
 
         lblCommName1.setText("Doctor Name");
 
@@ -70,6 +84,11 @@ public class EditDoctor extends javax.swing.JPanel {
         });
 
         submitUpdateDr.setText("UPDATE");
+        submitUpdateDr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitUpdateDrActionPerformed(evt);
+            }
+        });
 
         submitDeleteDr.setText("DELETE");
         submitDeleteDr.addActionListener(new java.awt.event.ActionListener() {
@@ -148,7 +167,66 @@ public class EditDoctor extends javax.swing.JPanel {
 
     private void submitDeleteDrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitDeleteDrActionPerformed
         // TODO add your handling code here:
+          int selectedRowIndex=docTable.getSelectedRow();
+            if(selectedRowIndex<0){
+            JOptionPane.showMessageDialog(this, "Please select a row to delete");
+            return;
+        }
+        
+                DefaultTableModel model= (DefaultTableModel) docTable.getModel();
+                DoctorData selectedPerson=(DoctorData) model.getValueAt(selectedRowIndex,0 );
+                drHis.deleteData(selectedPerson);
+                
+                JOptionPane.showMessageDialog(this, "Person Data deleted");
+                
+                populateTable();
+
+
     }//GEN-LAST:event_submitDeleteDrActionPerformed
+
+    private void submitVIewDrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitVIewDrActionPerformed
+        // TODO add your handling code here:
+               int selectedRowIndex=docTable.getSelectedRow();
+               if(selectedRowIndex<0){
+               JOptionPane.showMessageDialog(this, "Please select a row to view");
+               return;
+        }
+        
+                DefaultTableModel model= (DefaultTableModel) docTable.getModel();
+                DoctorData selectedPerson=(DoctorData) model.getValueAt(selectedRowIndex,0 );
+                txtDrName1.setText(String.valueOf(selectedPerson.getDrName()));
+                txtSpecial.setText(String.valueOf(selectedPerson.getDrSpec()));
+                txtHName1.setText(String.valueOf(selectedPerson.getHospitalName()));
+
+
+    }//GEN-LAST:event_submitVIewDrActionPerformed
+
+    private void submitUpdateDrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitUpdateDrActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex= docTable.getSelectedRow();
+              if(selectedRowIndex<0){
+                   JOptionPane.showMessageDialog(this, "Please select view/modify  for the row you want to update");
+                      return;
+                         }
+              
+               DefaultTableModel model= (DefaultTableModel) docTable.getModel();
+               DoctorData dd=(DoctorData) model.getValueAt(selectedRowIndex, 0);
+        
+            for(DoctorData i: drHis.getDoctorhistory()){
+              if(i.getDrName()==dd.getDrName()){
+                  
+            i.setDrName(txtDrName1.getText());
+            i.setDrSpec(txtSpecial.getText());
+            i.setHospitalName(txtHName1.getText());
+        
+            populateTable();
+
+            }
+
+            }
+
+
+    }//GEN-LAST:event_submitUpdateDrActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -164,4 +242,23 @@ public class EditDoctor extends javax.swing.JPanel {
     private javax.swing.JTextField txtHName1;
     private javax.swing.JTextField txtSpecial;
     // End of variables declaration//GEN-END:variables
+
+    private void populateTable() {
+         DefaultTableModel model= (DefaultTableModel) docTable.getModel();
+        
+        model.setRowCount(0);
+        for (DoctorData dd : drHis.getDoctorhistory()){
+            Object[] row= new Object[4];
+            row[0]=dd;
+            row[1]=dd.getDrName();
+            row[2]=dd.getDrSpec();
+            row[3]=dd.getHospitalName();
+            
+            
+            model.addRow(row);
+            
+        }
+
+        
+    }
 }

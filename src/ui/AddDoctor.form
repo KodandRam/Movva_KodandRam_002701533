@@ -29,7 +29,7 @@
                       <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="txtDrName" max="32767" attributes="0"/>
-                          <Component id="txtDrSpecislisation" max="32767" attributes="0"/>
+                          <Component id="txtDrSpecialisation" max="32767" attributes="0"/>
                           <Component id="txtHName" pref="129" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -49,7 +49,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblDrSpecialisation" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtDrSpecislisation" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtDrSpecialisation" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -79,9 +79,9 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDrNameActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtDrSpecislisation">
+    <Component class="javax.swing.JTextField" name="txtDrSpecialisation">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDrSpecislisationActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDrSpecialisationActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="addDrSubmit">

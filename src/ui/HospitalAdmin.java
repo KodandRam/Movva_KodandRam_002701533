@@ -4,6 +4,8 @@
  */
 package ui;
 
+import model.DoctorHistory;
+
 /**
  *
  * @author movvakodandram
@@ -13,8 +15,10 @@ public class HospitalAdmin extends javax.swing.JPanel {
     /**
      * Creates new form HospitalAdmin
      */
+    DoctorHistory drhis;
     public HospitalAdmin() {
         initComponents();
+        drhis = new DoctorHistory();
     }
 
     /**
@@ -96,13 +100,13 @@ public class HospitalAdmin extends javax.swing.JPanel {
 
     private void hsptAddDrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hsptAddDrActionPerformed
         // TODO add your handling code here:
-        AddDoctor adddr = new AddDoctor();
+        AddDoctor adddr = new AddDoctor(drhis);
         splitPane2.setRightComponent(adddr);
     }//GEN-LAST:event_hsptAddDrActionPerformed
 
     private void hsptEditDrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hsptEditDrActionPerformed
         // TODO add your handling code here:
-        EditDoctor editdr = new EditDoctor();
+        EditDoctor editdr = new EditDoctor(drhis);
         splitPane2.setRightComponent(editdr);
     }//GEN-LAST:event_hsptEditDrActionPerformed
 

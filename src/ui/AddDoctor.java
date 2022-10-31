@@ -4,6 +4,10 @@
  */
 package ui;
 
+import javax.swing.JOptionPane;
+import model.DoctorData;
+import model.DoctorHistory;
+
 /**
  *
  * @author movvakodandram
@@ -13,8 +17,11 @@ public class AddDoctor extends javax.swing.JPanel {
     /**
      * Creates new form AddDoctor
      */
-    public AddDoctor() {
+    DoctorHistory drHis;
+    
+    public AddDoctor(DoctorHistory drHis) {
         initComponents();
+        this.drHis=drHis;
     }
 
     /**
@@ -29,7 +36,7 @@ public class AddDoctor extends javax.swing.JPanel {
         lblDrName = new javax.swing.JLabel();
         lblDrSpecialisation = new javax.swing.JLabel();
         txtDrName = new javax.swing.JTextField();
-        txtDrSpecislisation = new javax.swing.JTextField();
+        txtDrSpecialisation = new javax.swing.JTextField();
         addDrSubmit = new javax.swing.JButton();
         lblHname = new javax.swing.JLabel();
         txtHName = new javax.swing.JTextField();
@@ -44,9 +51,9 @@ public class AddDoctor extends javax.swing.JPanel {
             }
         });
 
-        txtDrSpecislisation.addActionListener(new java.awt.event.ActionListener() {
+        txtDrSpecialisation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDrSpecislisationActionPerformed(evt);
+                txtDrSpecialisationActionPerformed(evt);
             }
         });
 
@@ -75,7 +82,7 @@ public class AddDoctor extends javax.swing.JPanel {
                         .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtDrName)
-                            .addComponent(txtDrSpecislisation)
+                            .addComponent(txtDrSpecialisation)
                             .addComponent(txtHName, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE))))
                 .addContainerGap(149, Short.MAX_VALUE))
         );
@@ -89,7 +96,7 @@ public class AddDoctor extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDrSpecialisation)
-                    .addComponent(txtDrSpecislisation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDrSpecialisation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHname)
@@ -104,12 +111,38 @@ public class AddDoctor extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDrNameActionPerformed
 
-    private void txtDrSpecislisationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDrSpecislisationActionPerformed
+    private void txtDrSpecialisationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDrSpecialisationActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtDrSpecislisationActionPerformed
+    }//GEN-LAST:event_txtDrSpecialisationActionPerformed
 
     private void addDrSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDrSubmitActionPerformed
         // TODO add your handling code here:
+          if(txtDrName.getText().equals("")||txtDrSpecialisation.getText().equals("")||txtHName.getText().equals("") ){
+            JOptionPane.showMessageDialog(null, "Please fill all the information");
+            
+        }
+        else if(validateData()){
+            String drName=txtDrName.getText();
+            String special=txtDrSpecialisation.getText();
+            String hName=txtHName.getText();
+           
+           
+            
+            DoctorData dd= drHis.addNewData();
+            dd.setDrName(drName);
+            dd.setDrSpec(special);
+            dd.setHospitalName(hName);
+          
+          
+            
+            JOptionPane.showMessageDialog(this,"New Doctor Created");
+            txtDrName.setText("");
+            txtDrSpecialisation.setText("");
+            txtHName.setText("");
+ 
+        }
+
+
     }//GEN-LAST:event_addDrSubmitActionPerformed
 
 
@@ -119,7 +152,27 @@ public class AddDoctor extends javax.swing.JPanel {
     private javax.swing.JLabel lblDrSpecialisation;
     private javax.swing.JLabel lblHname;
     private javax.swing.JTextField txtDrName;
-    private javax.swing.JTextField txtDrSpecislisation;
+    private javax.swing.JTextField txtDrSpecialisation;
     private javax.swing.JTextField txtHName;
     // End of variables declaration//GEN-END:variables
+
+    private boolean validateData() {
+        if (txtDrName.getText().length() < 2 || !txtDrName.getText().matches("[a-zA-Z]+")) {
+            JOptionPane.showMessageDialog(this, "Enter proper diagnosis");
+            return false;
+        }
+        
+        if (txtDrSpecialisation.getText().length() < 2 || !txtDrSpecialisation.getText().matches("[a-zA-Z]+")) {
+            JOptionPane.showMessageDialog(this, "Enter proper diagnosis");
+            return false;
+        }
+          
+        if (txtHName.getText().length() < 2 || !txtHName.getText().matches("[a-zA-Z]+")) {
+            JOptionPane.showMessageDialog(this, "Enter proper diagnosis");
+            return false;
+        }
+  
+        return true;
+        
+    }
 }

@@ -4,6 +4,7 @@
  */
 package ui;
 
+import model.DoctorHistory;
 import model.PatientHistory;
 import model.PersonHistory;
 
@@ -19,11 +20,14 @@ public class SystemAdmin extends javax.swing.JPanel {
     
     PersonHistory perhis;
     PatientHistory pathis;
+    DoctorHistory drhis;
     
     public SystemAdmin() {
         initComponents();
         perhis= new PersonHistory();
         pathis= new PatientHistory();
+        drhis = new DoctorHistory();
+        
     }
 
     /**
@@ -201,7 +205,7 @@ public class SystemAdmin extends javax.swing.JPanel {
 
     private void adminEditDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminEditDoctorActionPerformed
         // TODO add your handling code here:
-        EditDoctor editdoc = new EditDoctor();
+        EditDoctor editdoc = new EditDoctor(drhis);
         splitPane1.setRightComponent(editdoc);
     }//GEN-LAST:event_adminEditDoctorActionPerformed
 
@@ -227,7 +231,7 @@ public class SystemAdmin extends javax.swing.JPanel {
 
     private void adminAddDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminAddDoctorActionPerformed
         // TODO add your handling code here:
-        AddDoctor adddoc = new AddDoctor();
+        AddDoctor adddoc = new AddDoctor(drhis);
         splitPane1.setRightComponent(adddoc);
        
 
