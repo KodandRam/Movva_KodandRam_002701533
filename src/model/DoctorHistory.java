@@ -24,5 +24,14 @@ public class DoctorHistory {
         this.doctorhistory = doctorhistory;
     }
     
+    public DoctorData addNewData() {
+       DoctorData newDoctorData = new DoctorData();
+      doctorhistory.add(newDoctorData);
+      return newDoctorData;
+        
+    }
     
+     public void deleteData(DoctorData selectedPerson) {
+        doctorhistory.remove(selectedPerson);
+    }
 }

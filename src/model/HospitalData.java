@@ -13,11 +13,7 @@ public class HospitalData {
     private String commName;
     private String zip;
     
-    public HospitalData(String hosName, String commName, String zip){
-        this.hosName=hosName;
-        this.commName=commName;
-        this.zip=zip;
-    }
+   
 
     public String getHosName() {
         return hosName;

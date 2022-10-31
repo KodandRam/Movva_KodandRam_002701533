@@ -13,11 +13,7 @@ public class CommunityData {
     private String cName;
     private String zipCode;
     
-    public CommunityData(String cName, String zipCode){
-        this.cName=cName;
-        this.zipCode=zipCode;
-        
-    }
+    
 
     public String getcName() {
         return cName;

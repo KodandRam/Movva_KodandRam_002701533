@@ -4,6 +4,12 @@
  */
 package ui;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.PatientData;
+import model.PatientHistory;
+import model.PersonData;
+
 /**
  *
  * @author movvakodandram
@@ -13,8 +19,14 @@ public class EditVitals extends javax.swing.JPanel {
     /**
      * Creates new form EditVitals
      */
-    public EditVitals() {
+    PatientHistory pathis;
+    PatientData pd;
+    
+    public EditVitals(PatientHistory pathis) {
         initComponents();
+        this.pathis=pathis;
+        populateTable();
+        
     }
 
     /**
@@ -88,6 +100,11 @@ public class EditVitals extends javax.swing.JPanel {
         lblRREdit.setText("Respiration Rate");
 
         submitUpdateVitals.setText("UPDATE");
+        submitUpdateVitals.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitUpdateVitalsActionPerformed(evt);
+            }
+        });
 
         submitDeleteVitals.setText("DELETE");
         submitDeleteVitals.addActionListener(new java.awt.event.ActionListener() {
@@ -97,6 +114,11 @@ public class EditVitals extends javax.swing.JPanel {
         });
 
         submitVIewVitals.setText("VIEW");
+        submitVIewVitals.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitVIewVitalsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -182,7 +204,78 @@ public class EditVitals extends javax.swing.JPanel {
 
     private void submitDeleteVitalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitDeleteVitalsActionPerformed
         // TODO add your handling code here:
+        
+         int selectedRowIndex=vitalsTable.getSelectedRow();
+        if(selectedRowIndex<0){
+            JOptionPane.showMessageDialog(this, "Please select a row to delete");
+            return;
+        }
+        
+                DefaultTableModel model= (DefaultTableModel) vitalsTable.getModel();
+                PatientData selectedPerson=(PatientData) model.getValueAt(selectedRowIndex,0 );
+                pathis.deleteData(selectedPerson);
+                
+                JOptionPane.showMessageDialog(this, "Person Data deleted");
+                
+                populateTable();
+
+
+
+
+
+
     }//GEN-LAST:event_submitDeleteVitalsActionPerformed
+
+    private void submitVIewVitalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitVIewVitalsActionPerformed
+        // TODO add your handling code here:
+               int selectedRowIndex=vitalsTable.getSelectedRow();
+               if(selectedRowIndex<0){
+               JOptionPane.showMessageDialog(this, "Please select a row to view");
+               return;
+        }
+        
+                DefaultTableModel model= (DefaultTableModel) vitalsTable.getModel();
+                PatientData selectedPerson=(PatientData) model.getValueAt(selectedRowIndex,0 );
+                txtIDEdit.setText(String.valueOf(selectedPerson.getPatId()));
+                txtWeightEdit.setText(String.valueOf(selectedPerson.getWeight()));
+                txtTempEdit.setText(String.valueOf(selectedPerson.getTemperature()));
+                txtBPEdit.setText(String.valueOf(selectedPerson.getbP()));
+                txtRREdit.setText(String.valueOf(selectedPerson.getrR()));
+                txtDiagnosisEdit.setText(String.valueOf(selectedPerson.getDiagnosis()));
+
+    }//GEN-LAST:event_submitVIewVitalsActionPerformed
+
+    private void submitUpdateVitalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitUpdateVitalsActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex= vitalsTable.getSelectedRow();
+              if(selectedRowIndex<0){
+                   JOptionPane.showMessageDialog(this, "Please select view/modify  for the row you want to update");
+                      return;
+                         }
+              
+               DefaultTableModel model= (DefaultTableModel) vitalsTable.getModel();
+               PatientData pd=(PatientData) model.getValueAt(selectedRowIndex, 0);
+        
+            for(PatientData i: pathis.getPatienthistory()){
+              if(i.getPatId()==pd.getPatId()){
+
+            i.setPatId(Integer.parseInt(txtIDEdit.getText()));
+            i.setWeight(Integer.parseInt(txtWeightEdit.getText()));
+            i.setTemperature(Integer.parseInt(txtTempEdit.getText()));
+            i.setbP(txtBPEdit.getText());
+            i.setrR(Integer.parseInt(txtRREdit.getText()));
+            i.setDiagnosis(txtDiagnosisEdit.getText());
+           
+            
+            populateTable();
+
+
+            }
+
+
+
+            }
+    }//GEN-LAST:event_submitUpdateVitalsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -204,4 +297,25 @@ public class EditVitals extends javax.swing.JPanel {
     private javax.swing.JTextField txtWeightEdit;
     private javax.swing.JTable vitalsTable;
     // End of variables declaration//GEN-END:variables
+
+    private void populateTable() {
+                
+        DefaultTableModel model= (DefaultTableModel) vitalsTable.getModel();
+        
+        model.setRowCount(0);
+        for (PatientData pd : pathis.getPatienthistory()){
+            Object[] row= new Object[7];
+            row[0]=pd;
+            row[1]=pd.getPatId();
+            row[2]=pd.getWeight();
+            row[3]=pd.getTemperature();
+            row[4]=pd.getbP();
+            row[5]=pd.getrR();
+            row[6]=pd.getDiagnosis();
+            
+            model.addRow(row);
+            
+        }
+        
+    }
 }

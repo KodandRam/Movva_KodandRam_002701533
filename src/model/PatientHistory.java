@@ -25,7 +25,17 @@ public class PatientHistory {
     public void setPatienthistory(ArrayList<PatientData> patienthistory) {
         this.patienthistory = patienthistory;
     }
+
+    public PatientData addNewData() {
+       PatientData newPatientData = new PatientData();
+      patienthistory.add(newPatientData);
+      return newPatientData;
+        
+    }
     
+     public void deleteData(PatientData selectedPerson) {
+        patienthistory.remove(selectedPerson);
+    }
     
     
 }

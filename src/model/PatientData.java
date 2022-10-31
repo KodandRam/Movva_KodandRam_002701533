@@ -16,14 +16,7 @@ public class PatientData {
     private int rR;
     private String diagnosis;
     
-    public PatientData(int patId, int weight, int temperature,String bP,int rR,String diagnosis){
-        this.patId=patId;
-        this.weight=weight;
-        this.temperature=temperature;
-        this.bP=bP;
-        this.rR=rR;
-        this.diagnosis=diagnosis;
-    }
+ 
 
     public int getPatId() {
         return patId;

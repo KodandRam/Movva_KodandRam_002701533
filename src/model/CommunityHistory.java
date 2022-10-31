@@ -25,4 +25,14 @@ public class CommunityHistory {
         this.communityhistory = communityhistory;
     }
     
+    public CommunityData addNewData() {
+       CommunityData newCommunityData = new CommunityData();
+      communityhistory.add(newCommunityData);
+      return newCommunityData;
+        
+    }
+    
+     public void deleteData(CommunityData selectedPerson) {
+        communityhistory.remove(selectedPerson);
+    }
 }

@@ -13,11 +13,7 @@ public class DoctorData {
     private String drSpec;
     private String hospitalName;
     
-    public DoctorData(String drName,String drSpec,String hospitalName){
-        this.drName=drName;
-        this.drSpec=drSpec;
-        this.hospitalName=hospitalName;
-    }
+    
 
     public String getDrName() {
         return drName;

@@ -4,6 +4,12 @@
  */
 package ui;
 
+import javax.swing.JOptionPane;
+import model.PatientData;
+import model.PatientHistory;
+import model.PersonData;
+import model.PersonHistory;
+
 /**
  *
  * @author movvakodandram
@@ -13,8 +19,13 @@ public class AddVitals extends javax.swing.JPanel {
     /**
      * Creates new form AddVitals
      */
-    public AddVitals() {
+    
+    PatientHistory pathis;
+    PersonHistory perHis;
+    
+    public AddVitals(PatientHistory pathis) {
         initComponents();
+        this.pathis=pathis;
     }
 
     /**
@@ -150,6 +161,43 @@ public class AddVitals extends javax.swing.JPanel {
 
     private void submitAddVitalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitAddVitalsActionPerformed
         // TODO add your handling code here:
+if(txtID.getText().equals("")||txtWeight.getText().equals("")||txtTemp.getText().equals("")||txtBP.getText().equals("")||txtRR.getText().equals("")||
+               txtDiagnosis.getText().equals("") ){
+            JOptionPane.showMessageDialog(null, "Please fill all the information");
+            
+        }
+        else if(validateData()){
+            int Id=Integer.parseInt(txtID.getText().trim());
+            int weight=Integer.parseInt(txtWeight.getText().trim());
+            int temp=Integer.parseInt(txtTemp.getText().trim());
+            String bp=txtBP.getText();
+            int rr=Integer.parseInt(txtRR.getText().trim());
+            String diagnosis=txtDiagnosis.getText();
+           
+            
+            PatientData pd= pathis.addNewData();
+            pd.setPatId(Id);
+            pd.setWeight(weight);
+            pd.setTemperature(temp);
+            pd.setbP(bp);
+            pd.setrR(rr);
+            pd.setDiagnosis(diagnosis);
+          
+            
+            JOptionPane.showMessageDialog(this,"New Patient Vitals Created");
+            txtID.setText("");
+            txtWeight.setText("");
+            txtTemp.setText("");
+            txtBP.setText("");
+            txtRR.setText("");
+            txtDiagnosis.setText("");
+         
+            
+            
+        }
+
+
+
     }//GEN-LAST:event_submitAddVitalsActionPerformed
 
 
@@ -168,4 +216,40 @@ public class AddVitals extends javax.swing.JPanel {
     private javax.swing.JTextField txtTemp;
     private javax.swing.JTextField txtWeight;
     // End of variables declaration//GEN-END:variables
+
+    private boolean validateData() {
+        
+           if (!txtID.getText().matches("[0-9]+")  ){
+            JOptionPane.showMessageDialog(this, "Enter proper ID");
+        }
+          
+        if (!txtWeight.getText().matches("[0-9]+")) {
+            JOptionPane.showMessageDialog(this, "Enter proper weight");
+            return false;
+        }
+        
+        if (!txtTemp.getText().matches("[0-9]+")) {
+            JOptionPane.showMessageDialog(this, "Enter proper temperature");
+            return false;
+        }
+        
+        if (!txtRR.getText().matches("[0-9]+")) {
+            JOptionPane.showMessageDialog(this, "Enter proper Respiratory rate");
+            return false;
+        }
+
+        if (txtDiagnosis.getText().length() < 2 || !txtDiagnosis.getText().matches("[a-zA-Z]+")) {
+            JOptionPane.showMessageDialog(this, "Enter proper diagnosis");
+            return false;
+        }
+        
+        if (!txtBP.getText().matches("^\\d{1,3}\\/\\d{1,3}$")) {
+            JOptionPane.showMessageDialog(this, "Enter proper BP");
+            return false;
+        }
+        
+        
+
+        return true;
+    }
 }

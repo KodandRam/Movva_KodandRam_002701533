@@ -4,17 +4,22 @@
  */
 package ui;
 
+import model.PatientHistory;
+
 /**
  *
  * @author movvakodandram
  */
 public class Doctor extends javax.swing.JPanel {
+        PatientHistory pathis;
 
     /**
      * Creates new form Doctor
      */
     public Doctor() {
         initComponents();
+        pathis= new PatientHistory();
+
     }
 
     /**
@@ -96,13 +101,13 @@ public class Doctor extends javax.swing.JPanel {
 
     private void editVitalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editVitalsActionPerformed
         // TODO add your handling code here:
-        EditVitals editvitals= new EditVitals();
+        EditVitals editvitals= new EditVitals(pathis);
         splitPane5.setRightComponent(editvitals);
     }//GEN-LAST:event_editVitalsActionPerformed
 
     private void addVitalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addVitalsActionPerformed
         // TODO add your handling code here:
-        AddVitals addvitals = new AddVitals();
+        AddVitals addvitals = new AddVitals(pathis);
         splitPane5.setRightComponent(addvitals);
     }//GEN-LAST:event_addVitalsActionPerformed
 

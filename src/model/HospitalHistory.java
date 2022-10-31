@@ -25,6 +25,15 @@ public class HospitalHistory {
     public void setHospitalhistory(ArrayList<HospitalData> hospitalhistory) {
         this.hospitalhistory = hospitalhistory;
     }
+    public HospitalData addNewData() {
+       HospitalData newHospitalData = new HospitalData();
+      hospitalhistory.add(newHospitalData);
+      return newHospitalData;
+        
+    }
     
+     public void deleteData(HospitalData selectedPerson) {
+        hospitalhistory.remove(selectedPerson);
+    }
     
 }
