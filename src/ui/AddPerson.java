@@ -164,7 +164,12 @@ public class AddPerson extends javax.swing.JPanel {
     private void txtPersonIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPersonIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPersonIDActionPerformed
-
+    
+    
+    public PersonData addNewPerson(PersonData person){
+      return  perHis.addNewData();
+    }
+    
     private void txtEmergencyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmergencyActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEmergencyActionPerformed
@@ -271,4 +276,8 @@ public class AddPerson extends javax.swing.JPanel {
     private javax.swing.JTextField txtPersonName;
     private javax.swing.JTextField txtPersonPhone;
     // End of variables declaration//GEN-END:variables
+
+
+    
+    
 }

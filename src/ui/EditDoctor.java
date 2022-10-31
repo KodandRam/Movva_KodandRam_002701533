@@ -64,13 +64,13 @@ public class EditDoctor extends javax.swing.JPanel {
 
         docTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Doctor Name", "Specialisation", "Hospital Name"
+                "Doctor Object", "Doctor Name", "Specialisation", "Hospital Name"
             }
         ));
         jScrollPane1.setViewportView(docTable);

@@ -5,6 +5,7 @@
 package ui;
 
 import javax.swing.JOptionPane;
+import static javax.swing.JTable.PrintMode.NORMAL;
 import javax.swing.table.DefaultTableModel;
 import model.PersonData;
 import model.PersonHistory;
@@ -63,15 +64,23 @@ public class EditPerson extends javax.swing.JPanel {
 
         tablePerson.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Person ID", "Name", "Age", "Gender", "Phone", "Address", "Email", "Emergency Contact"
+                "Person Object", "Person ID", "Name", "Age", "Gender", "Phone", "Address", "Email", "Emergency Contact"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tablePerson);
 
         lblEmergencyV.setText("Emergency Contact");
@@ -254,7 +263,7 @@ public class EditPerson extends javax.swing.JPanel {
         }
         
                 DefaultTableModel model= (DefaultTableModel) tablePerson.getModel();
-                PersonData selectedPerson=(PersonData) model.getValueAt(selectedRowIndex,0 );
+                PersonData selectedPerson=(PersonData) model.getValueAt(selectedRowIndex,0);
                 txtPersonIDV.setText(String.valueOf(selectedPerson.getPersonID()));
                 txtPersonNameV.setText(selectedPerson.getName());                
                 txtPersonAgeV.setText(String.valueOf(selectedPerson.getAge()));

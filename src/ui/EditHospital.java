@@ -77,13 +77,13 @@ public class EditHospital extends javax.swing.JPanel {
 
         hosTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Hospital Name", "Community Name", "ZipCode"
+                "Hospital Object", "Hospital Name", "Community Name", "ZipCode"
             }
         ));
         jScrollPane1.setViewportView(hosTable);

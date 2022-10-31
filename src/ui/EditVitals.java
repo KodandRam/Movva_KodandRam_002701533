@@ -58,13 +58,13 @@ public class EditVitals extends javax.swing.JPanel {
 
         vitalsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Person ID", "Weight", "Temperature", "Blood Pressure", "Respiratory Rate", "Diagnosis"
+                "Vitals Object", "Person ID", "Weight", "Temperature", "Blood Pressure", "Respiratory Rate", "Diagnosis"
             }
         ));
         jScrollPane1.setViewportView(vitalsTable);

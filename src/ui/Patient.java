@@ -6,7 +6,7 @@ package ui;
 
 import model.DoctorHistory;
 import model.PersonHistory;
-
+import ui.AddPerson;
 /**
  *
  * @author movvakodandram

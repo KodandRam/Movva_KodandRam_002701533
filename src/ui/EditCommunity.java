@@ -47,13 +47,13 @@ public class EditCommunity extends javax.swing.JPanel {
 
         commTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Community Name", "Zip Code"
+                "Community Object", "Community Name", "Zip Code"
             }
         ));
         jScrollPane1.setViewportView(commTable);
