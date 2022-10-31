@@ -4,6 +4,10 @@
  */
 package ui;
 
+import javax.swing.JOptionPane;
+import model.HospitalData;
+import model.HospitalHistory;
+
 /**
  *
  * @author movvakodandram
@@ -13,8 +17,10 @@ public class AddHospital extends javax.swing.JPanel {
     /**
      * Creates new form AddHospital
      */
-    public AddHospital() {
+    HospitalHistory hosHis;
+    public AddHospital(HospitalHistory hosHis) {
         initComponents();
+        this.hosHis=hosHis;
     }
 
     /**
@@ -37,6 +43,11 @@ public class AddHospital extends javax.swing.JPanel {
         lblHsptlName.setText("Hospital Name");
 
         btnAddHsptl.setText("SUBMIT");
+        btnAddHsptl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddHsptlActionPerformed(evt);
+            }
+        });
 
         txtCommZipHsptl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,6 +116,31 @@ public class AddHospital extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCommNameHsptlActionPerformed
 
+    private void btnAddHsptlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddHsptlActionPerformed
+        // TODO add your handling code here:
+            if(txtHsptlName.getText().equals("")||txtCommNameHsptl.getText().equals("")||txtCommZipHsptl.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Please fill all the information");
+            
+        }
+        else if(validateData()){
+            String hName=txtHsptlName.getText();
+            String commName1=txtCommNameHsptl.getText();
+            String commZip1=txtCommZipHsptl.getText();       
+            HospitalData hd= hosHis.addNewData();
+            hd.setHosName(hName);
+            hd.setCommName(commName1);
+            hd.setZip(commZip1);
+    
+            JOptionPane.showMessageDialog(this,"New Hospital Created");
+            txtHsptlName.setText("");
+            txtCommNameHsptl.setText("");
+            txtCommZipHsptl.setText("");
+ 
+        }
+
+
+    }//GEN-LAST:event_btnAddHsptlActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddHsptl;
@@ -115,4 +151,26 @@ public class AddHospital extends javax.swing.JPanel {
     private javax.swing.JTextField txtCommZipHsptl;
     private javax.swing.JTextField txtHsptlName;
     // End of variables declaration//GEN-END:variables
+
+    private boolean validateData() {
+        
+        if (txtHsptlName.getText().length() < 2 || !txtHsptlName.getText().matches("[a-zA-Z]+")) {
+            JOptionPane.showMessageDialog(this, "Enter proper community name");
+            return false;
+        }
+        
+        if (txtCommNameHsptl.getText().length() < 2 || !txtCommNameHsptl.getText().matches("[a-zA-Z]+")) {
+            JOptionPane.showMessageDialog(this, "Enter proper community name");
+            return false;
+        }
+          
+        if (txtCommZipHsptl.getText().length() < 2 || !txtCommZipHsptl.getText().matches("^[0-9]{5}(?:-[0-9]{4})?$")) {
+            JOptionPane.showMessageDialog(this, "Enter proper zipcode");
+            return false;
+        }
+  
+        return true;
+        
+        
+    }
 }

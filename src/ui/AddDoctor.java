@@ -158,17 +158,17 @@ public class AddDoctor extends javax.swing.JPanel {
 
     private boolean validateData() {
         if (txtDrName.getText().length() < 2 || !txtDrName.getText().matches("[a-zA-Z]+")) {
-            JOptionPane.showMessageDialog(this, "Enter proper diagnosis");
+            JOptionPane.showMessageDialog(this, "Enter proper Name");
             return false;
         }
         
         if (txtDrSpecialisation.getText().length() < 2 || !txtDrSpecialisation.getText().matches("[a-zA-Z]+")) {
-            JOptionPane.showMessageDialog(this, "Enter proper diagnosis");
+            JOptionPane.showMessageDialog(this, "Enter proper specialisation");
             return false;
         }
           
         if (txtHName.getText().length() < 2 || !txtHName.getText().matches("[a-zA-Z]+")) {
-            JOptionPane.showMessageDialog(this, "Enter proper diagnosis");
+            JOptionPane.showMessageDialog(this, "Enter proper hospital name");
             return false;
         }
   

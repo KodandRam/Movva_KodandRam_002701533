@@ -4,6 +4,10 @@
  */
 package ui;
 
+import javax.swing.JOptionPane;
+import model.CommunityData;
+import model.CommunityHistory;
+
 /**
  *
  * @author movvakodandram
@@ -13,8 +17,11 @@ public class AddCommunity extends javax.swing.JPanel {
     /**
      * Creates new form AddCommunity
      */
-    public AddCommunity() {
+    CommunityHistory comHis;
+    
+    public AddCommunity(CommunityHistory comHis) {
         initComponents();
+        this.comHis=comHis;
     }
 
     /**
@@ -49,6 +56,11 @@ public class AddCommunity extends javax.swing.JPanel {
         });
 
         submitAddComm.setText("SUBMIT");
+        submitAddComm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitAddCommActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -93,6 +105,32 @@ public class AddCommunity extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCommZipActionPerformed
 
+    private void submitAddCommActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitAddCommActionPerformed
+        // TODO add your handling code here:
+            if(txtCommName.getText().equals("")||txtCommZip.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Please fill all the information");
+            
+        }
+        else if(validateData()){
+            String commName=txtCommName.getText();
+            String commZip=txtCommZip.getText();
+           
+           
+            
+            CommunityData cd= comHis.addNewData();
+            cd.setcName(commName);
+            cd.setZipCode(commZip);
+          
+          
+            
+            JOptionPane.showMessageDialog(this,"New Community Created");
+            txtCommName.setText("");
+            txtCommZip.setText("");
+ 
+        }
+
+    }//GEN-LAST:event_submitAddCommActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lblCommName;
@@ -101,4 +139,21 @@ public class AddCommunity extends javax.swing.JPanel {
     private javax.swing.JTextField txtCommName;
     private javax.swing.JTextField txtCommZip;
     // End of variables declaration//GEN-END:variables
+
+    private boolean validateData() {
+
+        if (txtCommName.getText().length() < 2 || !txtCommName.getText().matches("[a-zA-Z]+")) {
+            JOptionPane.showMessageDialog(this, "Enter proper community name");
+            return false;
+        }
+          
+        if (txtCommZip.getText().length() < 2 || !txtCommZip.getText().matches("^[0-9]{5}(?:-[0-9]{4})?$")) {
+            JOptionPane.showMessageDialog(this, "Enter proper zipcode");
+            return false;
+        }
+  
+        return true;
+        
+        
+    }
 }

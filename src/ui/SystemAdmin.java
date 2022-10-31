@@ -4,7 +4,9 @@
  */
 package ui;
 
+import model.CommunityHistory;
 import model.DoctorHistory;
+import model.HospitalHistory;
 import model.PatientHistory;
 import model.PersonHistory;
 
@@ -21,6 +23,8 @@ public class SystemAdmin extends javax.swing.JPanel {
     PersonHistory perhis;
     PatientHistory pathis;
     DoctorHistory drhis;
+    CommunityHistory comhis;
+    HospitalHistory homhis;
     
     public SystemAdmin() {
         initComponents();
@@ -191,14 +195,14 @@ public class SystemAdmin extends javax.swing.JPanel {
 
     private void adminAddHospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminAddHospitalActionPerformed
         // TODO add your handling code here:
-        AddHospital addhspt= new AddHospital();
+        AddHospital addhspt= new AddHospital(homhis);
         splitPane1.setRightComponent(addhspt);
 
     }//GEN-LAST:event_adminAddHospitalActionPerformed
 
     private void adminEditHospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminEditHospitalActionPerformed
         // TODO add your handling code here:
-        EditHospital edithspt= new EditHospital();
+        EditHospital edithspt= new EditHospital(homhis);
         splitPane1.setRightComponent(edithspt);
 
     }//GEN-LAST:event_adminEditHospitalActionPerformed
@@ -218,13 +222,13 @@ public class SystemAdmin extends javax.swing.JPanel {
 
     private void AdminEditCommunityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminEditCommunityActionPerformed
         // TODO add your handling code here:
-        EditCommunity editcmt = new EditCommunity();
+        EditCommunity editcmt = new EditCommunity(comhis);
         splitPane1.setRightComponent(editcmt);
     }//GEN-LAST:event_AdminEditCommunityActionPerformed
 
     private void adminAddCommunityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminAddCommunityActionPerformed
         // TODO add your handling code here:
-        AddCommunity addcmt =new AddCommunity();
+        AddCommunity addcmt =new AddCommunity(comhis);
         splitPane1.setRightComponent(addcmt);
 
     }//GEN-LAST:event_adminAddCommunityActionPerformed

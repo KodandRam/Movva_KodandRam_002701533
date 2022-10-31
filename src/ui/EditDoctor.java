@@ -177,7 +177,7 @@ public class EditDoctor extends javax.swing.JPanel {
                 DoctorData selectedPerson=(DoctorData) model.getValueAt(selectedRowIndex,0 );
                 drHis.deleteData(selectedPerson);
                 
-                JOptionPane.showMessageDialog(this, "Person Data deleted");
+                JOptionPane.showMessageDialog(this, "Doctor Data deleted");
                 
                 populateTable();
 

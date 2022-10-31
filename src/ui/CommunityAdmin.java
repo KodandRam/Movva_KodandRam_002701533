@@ -4,6 +4,9 @@
  */
 package ui;
 
+import model.CommunityHistory;
+import model.HospitalHistory;
+
 /**
  *
  * @author movvakodandram
@@ -13,8 +16,13 @@ public class CommunityAdmin extends javax.swing.JPanel {
     /**
      * Creates new form CommunityAdmin
      */
+    CommunityHistory comhis;
+    HospitalHistory hoshis;
+    
     public CommunityAdmin() {
         initComponents();
+        comhis= new CommunityHistory();
+        hoshis= new HospitalHistory();
     }
 
     /**
@@ -115,27 +123,27 @@ public class CommunityAdmin extends javax.swing.JPanel {
 
     private void addCommActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCommActionPerformed
         // TODO add your handling code here:
-        AddCommunity addcomm= new AddCommunity();
+        AddCommunity addcomm= new AddCommunity(comhis);
         splitPane3.setRightComponent(addcomm);
 
     }//GEN-LAST:event_addCommActionPerformed
 
     private void editCommActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCommActionPerformed
         // TODO add your handling code here:
-        EditCommunity editcomm= new EditCommunity();
+        EditCommunity editcomm= new EditCommunity(comhis);
         splitPane3.setRightComponent(editcomm);
     }//GEN-LAST:event_editCommActionPerformed
 
     private void addHosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addHosActionPerformed
         // TODO add your handling code here:
-        AddHospital addhosp= new AddHospital();
+        AddHospital addhosp= new AddHospital(hoshis);
         splitPane3.setRightComponent(addhosp);
 
     }//GEN-LAST:event_addHosActionPerformed
 
     private void editHosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editHosActionPerformed
         // TODO add your handling code here:
-        EditHospital edithosp= new EditHospital();
+        EditHospital edithosp= new EditHospital(hoshis);
         splitPane3.setRightComponent(edithosp);
     }//GEN-LAST:event_editHosActionPerformed
 

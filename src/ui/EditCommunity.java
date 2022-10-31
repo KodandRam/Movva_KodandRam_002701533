@@ -4,6 +4,11 @@
  */
 package ui;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.CommunityData;
+import model.CommunityHistory;
+
 /**
  *
  * @author movvakodandram
@@ -13,8 +18,12 @@ public class EditCommunity extends javax.swing.JPanel {
     /**
      * Creates new form EditCommunity
      */
-    public EditCommunity() {
+    CommunityHistory comHis;
+    
+    public EditCommunity(CommunityHistory comHis) {
         initComponents();
+        this.comHis=comHis;
+        populateTable();
     }
 
     /**
@@ -27,7 +36,7 @@ public class EditCommunity extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        commTable = new javax.swing.JTable();
         txtCommZip1 = new javax.swing.JTextField();
         submitVIewComm = new javax.swing.JButton();
         lblCommName1 = new javax.swing.JLabel();
@@ -36,7 +45,7 @@ public class EditCommunity extends javax.swing.JPanel {
         submitUpdateComm = new javax.swing.JButton();
         submitDeleteComm = new javax.swing.JButton();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        commTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -47,7 +56,7 @@ public class EditCommunity extends javax.swing.JPanel {
                 "Community Name", "Zip Code"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(commTable);
 
         txtCommZip1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -56,6 +65,11 @@ public class EditCommunity extends javax.swing.JPanel {
         });
 
         submitVIewComm.setText("VIEW");
+        submitVIewComm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitVIewCommActionPerformed(evt);
+            }
+        });
 
         lblCommName1.setText("Community Name");
 
@@ -68,6 +82,11 @@ public class EditCommunity extends javax.swing.JPanel {
         });
 
         submitUpdateComm.setText("UPDATE");
+        submitUpdateComm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitUpdateCommActionPerformed(evt);
+            }
+        });
 
         submitDeleteComm.setText("DELETE");
         submitDeleteComm.addActionListener(new java.awt.event.ActionListener() {
@@ -135,12 +154,67 @@ public class EditCommunity extends javax.swing.JPanel {
 
     private void submitDeleteCommActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitDeleteCommActionPerformed
         // TODO add your handling code here:
+            int selectedRowIndex=commTable.getSelectedRow();
+            if(selectedRowIndex<0){
+            JOptionPane.showMessageDialog(this, "Please select a row to delete");
+            return;
+        }
+        
+                DefaultTableModel model= (DefaultTableModel) commTable.getModel();
+                CommunityData selectedPerson=(CommunityData) model.getValueAt(selectedRowIndex,0 );
+                comHis.deleteData(selectedPerson);
+                
+                JOptionPane.showMessageDialog(this, "Community Data deleted");
+                
+                populateTable();
+
+
     }//GEN-LAST:event_submitDeleteCommActionPerformed
+
+    private void submitVIewCommActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitVIewCommActionPerformed
+        // TODO add your handling code here:
+               int selectedRowIndex=commTable.getSelectedRow();
+               if(selectedRowIndex<0){
+               JOptionPane.showMessageDialog(this, "Please select a row to view");
+               return;
+        }
+        
+                DefaultTableModel model= (DefaultTableModel) commTable.getModel();
+                CommunityData selectedPerson=(CommunityData) model.getValueAt(selectedRowIndex,0 );
+                txtCommName1.setText(String.valueOf(selectedPerson.getcName()));
+                txtCommZip1.setText(String.valueOf(selectedPerson.getZipCode()));
+
+    }//GEN-LAST:event_submitVIewCommActionPerformed
+
+    private void submitUpdateCommActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitUpdateCommActionPerformed
+        // TODO add your handling code here:
+         int selectedRowIndex= commTable.getSelectedRow();
+              if(selectedRowIndex<0){
+                   JOptionPane.showMessageDialog(this, "Please select view/modify  for the row you want to update");
+                      return;
+                         }
+              
+               DefaultTableModel model= (DefaultTableModel) commTable.getModel();
+               CommunityData cd=(CommunityData) model.getValueAt(selectedRowIndex, 0);
+        
+            for(CommunityData i: comHis.getCommunityhistory()){
+              if(i.getcName()==cd.getcName()){
+               
+            i.setcName(txtCommName1.getText());
+            i.setZipCode(txtCommZip1.getText());
+        
+            populateTable();
+
+            }
+
+            }
+
+    }//GEN-LAST:event_submitUpdateCommActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable commTable;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblCommName1;
     private javax.swing.JLabel lblCommZip1;
     private javax.swing.JButton submitDeleteComm;
@@ -149,4 +223,21 @@ public class EditCommunity extends javax.swing.JPanel {
     private javax.swing.JTextField txtCommName1;
     private javax.swing.JTextField txtCommZip1;
     // End of variables declaration//GEN-END:variables
+
+    private void populateTable() {
+           DefaultTableModel model= (DefaultTableModel) commTable.getModel();
+        
+        model.setRowCount(0);
+        for (CommunityData cd : comHis.getCommunityhistory()){
+            Object[] row= new Object[3];
+            row[0]=cd;
+            row[1]=cd.getcName();
+            row[2]=cd.getZipCode();
+            
+            
+            model.addRow(row);
+            
+        }
+        
+    }
 }

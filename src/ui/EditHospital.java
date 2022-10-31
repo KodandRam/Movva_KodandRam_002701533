@@ -4,6 +4,11 @@
  */
 package ui;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.HospitalData;
+import model.HospitalHistory;
+
 /**
  *
  * @author movvakodandram
@@ -13,8 +18,11 @@ public class EditHospital extends javax.swing.JPanel {
     /**
      * Creates new form EditHospital
      */
-    public EditHospital() {
+    HospitalHistory hosHis;
+    public EditHospital(HospitalHistory hosHis) {
         initComponents();
+        this.hosHis=hosHis;
+        populateTable();
     }
 
     /**
@@ -45,6 +53,11 @@ public class EditHospital extends javax.swing.JPanel {
         });
 
         submitUpdateHos.setText("UPDATE");
+        submitUpdateHos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitUpdateHosActionPerformed(evt);
+            }
+        });
 
         submitDeleteHos.setText("DELETE");
         submitDeleteHos.addActionListener(new java.awt.event.ActionListener() {
@@ -54,6 +67,11 @@ public class EditHospital extends javax.swing.JPanel {
         });
 
         submitVIewHos.setText("VIEW");
+        submitVIewHos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitVIewHosActionPerformed(evt);
+            }
+        });
 
         lblHosName1.setText("Hospital Name");
 
@@ -153,6 +171,21 @@ public class EditHospital extends javax.swing.JPanel {
 
     private void submitDeleteHosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitDeleteHosActionPerformed
         // TODO add your handling code here:
+            int selectedRowIndex=hosTable.getSelectedRow();
+            if(selectedRowIndex<0){
+            JOptionPane.showMessageDialog(this, "Please select a row to delete");
+            return;
+        }
+        
+                DefaultTableModel model= (DefaultTableModel) hosTable.getModel();
+                HospitalData selectedPerson=(HospitalData) model.getValueAt(selectedRowIndex,0 );
+                hosHis.deleteData(selectedPerson);
+                
+                JOptionPane.showMessageDialog(this, "Hospital Data deleted");
+                
+                populateTable();
+
+
     }//GEN-LAST:event_submitDeleteHosActionPerformed
 
     private void txtCommZipHsptl1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCommZipHsptl1ActionPerformed
@@ -162,6 +195,47 @@ public class EditHospital extends javax.swing.JPanel {
     private void txtCommNameHsptl1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCommNameHsptl1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCommNameHsptl1ActionPerformed
+
+    private void submitVIewHosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitVIewHosActionPerformed
+        // TODO add your handling code here:
+               int selectedRowIndex=hosTable.getSelectedRow();
+               if(selectedRowIndex<0){
+               JOptionPane.showMessageDialog(this, "Please select a row to view");
+               return;
+        }
+        
+                DefaultTableModel model= (DefaultTableModel) hosTable.getModel();
+                HospitalData selectedPerson=(HospitalData) model.getValueAt(selectedRowIndex,0 );
+                txtHosName1.setText(String.valueOf(selectedPerson.getHosName()));
+                txtCommNameHsptl1.setText(String.valueOf(selectedPerson.getCommName()));
+                txtCommZipHsptl1.setText(String.valueOf(selectedPerson.getZip()));
+    }//GEN-LAST:event_submitVIewHosActionPerformed
+
+    private void submitUpdateHosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitUpdateHosActionPerformed
+        // TODO add your handling code here:
+              int selectedRowIndex= hosTable.getSelectedRow();
+              if(selectedRowIndex<0){
+                   JOptionPane.showMessageDialog(this, "Please select view/modify  for the row you want to update");
+                      return;
+                         }
+              
+               DefaultTableModel model= (DefaultTableModel) hosTable.getModel();
+               HospitalData hd=(HospitalData) model.getValueAt(selectedRowIndex, 0);
+        
+            for(HospitalData i: hosHis.getHospitalhistory()){
+              if(i.getHosName()==hd.getHosName()){
+                i.setHosName(txtHosName1.getText());
+                i.setCommName(txtCommNameHsptl1.getText());
+                i.setZip(txtCommZipHsptl1.getText());
+        
+            populateTable();
+
+            }
+
+            }
+
+
+    }//GEN-LAST:event_submitUpdateHosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -177,4 +251,23 @@ public class EditHospital extends javax.swing.JPanel {
     private javax.swing.JTextField txtCommZipHsptl1;
     private javax.swing.JTextField txtHosName1;
     // End of variables declaration//GEN-END:variables
+
+    private void populateTable() {
+         DefaultTableModel model= (DefaultTableModel) hosTable.getModel();
+        
+        model.setRowCount(0);
+        for (HospitalData hd : hosHis.getHospitalhistory()){
+            Object[] row= new Object[4];
+            row[0]=hd;
+            row[1]=hd.getHosName();
+            row[2]=hd.getCommName();
+            row[3]=hd.getZip();
+            
+            
+            model.addRow(row);
+            
+        }
+        
+        
+    }
 }

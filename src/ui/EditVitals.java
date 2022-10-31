@@ -215,7 +215,7 @@ public class EditVitals extends javax.swing.JPanel {
                 PatientData selectedPerson=(PatientData) model.getValueAt(selectedRowIndex,0 );
                 pathis.deleteData(selectedPerson);
                 
-                JOptionPane.showMessageDialog(this, "Person Data deleted");
+                JOptionPane.showMessageDialog(this, "Vitals Data deleted");
                 
                 populateTable();
 
