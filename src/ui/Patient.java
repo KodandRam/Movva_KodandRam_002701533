@@ -4,6 +4,7 @@
  */
 package ui;
 
+import model.DoctorHistory;
 import model.PersonHistory;
 
 /**
@@ -16,11 +17,13 @@ public class Patient extends javax.swing.JPanel {
      * Creates new form Patient
      */
     PersonHistory perhis;
+    DoctorHistory dochis;
     
     
     public Patient() {
         initComponents();
         perhis= new PersonHistory();
+        dochis= new DoctorHistory();
     }
 
     /**
@@ -126,7 +129,7 @@ public class Patient extends javax.swing.JPanel {
 
     private void searchDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchDocActionPerformed
         // TODO add your handling code here:
-        Search search=new Search();
+        Search search=new Search(dochis);
         splitPane7.setRightComponent(search);
 
     }//GEN-LAST:event_searchDocActionPerformed

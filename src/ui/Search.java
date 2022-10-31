@@ -4,6 +4,13 @@
  */
 package ui;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.DoctorData;
+import model.DoctorHistory;
+
 /**
  *
  * @author movvakodandram
@@ -13,8 +20,11 @@ public class Search extends javax.swing.JPanel {
     /**
      * Creates new form Search
      */
-    public Search() {
+    DoctorHistory docHis;
+    public Search(DoctorHistory docHis) {
         initComponents();
+        this.docHis=docHis;
+        populateTable();
     }
 
     /**
@@ -30,6 +40,7 @@ public class Search extends javax.swing.JPanel {
         txtSearch = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         searchTable = new javax.swing.JTable();
+        btnSearch = new javax.swing.JButton();
 
         lblSearch.setText("Search Hospital Name");
 
@@ -52,19 +63,28 @@ public class Search extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(searchTable);
 
+        btnSearch.setText("SEARCH");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addComponent(lblSearch)
                 .addGap(18, 18, 18)
-                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSearch)
+                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -73,9 +93,11 @@ public class Search extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSearch)
                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                .addGap(18, 18, 18)
+                .addComponent(btnSearch)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addGap(55, 55, 55))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -83,11 +105,68 @@ public class Search extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSearchActionPerformed
 
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // TODO add your handling code here:
+           if(txtSearch.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Please fill all the information");
+               
+           }
+           
+           List <DoctorData> search=new ArrayList<>();
+            String keyWord=txtSearch.getText();
+           for(DoctorData dd: docHis.getDoctorhistory()){
+               if((dd.getHospitalName().contains(keyWord))){
+                   
+                   search.add(dd);
+                   
+               }
+           }
+           
+           SearchTable(search);
+           
+
+
+
+    }//GEN-LAST:event_btnSearchActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSearch;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblSearch;
     private javax.swing.JTable searchTable;
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
+
+    private void populateTable() {
+     
+        DefaultTableModel model= (DefaultTableModel) searchTable.getModel();
+        
+        model.setRowCount(0);
+        for (DoctorData dd : docHis.getDoctorhistory()){
+            Object[] row= new Object[4];
+            row[0]=dd;
+            row[1]=dd.getDrName();
+            row[2]=dd.getDrSpec();
+            row[3]=dd.getHospitalName();
+            
+            
+            model.addRow(row);
+    }
 }
+
+    private void SearchTable(List<DoctorData> search) {
+        DefaultTableModel model= (DefaultTableModel) searchTable.getModel();
+        
+        model.setRowCount(0);
+        for (DoctorData dd : docHis.getDoctorhistory()){
+            Object[] row= new Object[4];
+            row[0]=dd;
+            row[1]=dd.getHospitalName();
+            row[2]=dd.getDrName();
+            row[3]=dd.getDrSpec();
+            
+            
+            model.addRow(row);
+    }
+}}
